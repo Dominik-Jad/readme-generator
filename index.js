@@ -5,16 +5,55 @@ const generateMarkdown = require("./utils/generateMarkdown");
 
 // array of questions for user
 const questions = [
-    "What is your GitHub username?",
-    "What is your email?",
-    "What is the title of your project?",
-    "What is the description of your project?",
-    "What are the installation instructions?",
-    "What is the usage information?",
-    "What are the contribution guidelines?",
-    "What are the test instructions?",
-    "What license would you like to use?"
-];
+        {
+            type: "input",
+            message: "What is your GitHub username?",
+            name: "username"
+        },
+        {
+            type: "input",
+            message: "What is your email?",
+            name: "email"
+        },
+        {
+            type: "input",
+            message: "What is the title of your project?",
+            name: "title"
+        },
+        {
+            type: "input",
+            message:  "What is the description of your project?",
+            name: "description"
+        },
+        {
+            type: "input",
+            message: "What are the installation instructions?",
+            name: "installation",
+            default: "npm i",
+        },
+        {
+            type: "input",
+            message: "What is the usage information?",
+            name: "usage"
+        },
+        {
+            type: "input",
+            message: "What are the contribution guidelines?",
+            name: "contribution"
+        },
+        {
+            type: "input",
+            message: "What are the test instructions?",
+            name: "test",
+            default: "npm test"
+        },
+        {
+            type: "list",
+            message: "What license would you like to use?",
+            name: "license",
+            choices: ["MIT", "GNU GPLv3", "Apache 2.0", "ISC"]
+        }
+    ];
 
 // function to write README file
 function writeToFile(fileName, data) {
@@ -26,54 +65,7 @@ function writeToFile(fileName, data) {
 // function to initialize program
 function init() {
     inquirer
-        .prompt([
-            {
-                type: "input",
-                message: questions[0],
-                name: "username"
-            },
-            {
-                type: "input",
-                message: questions[1],
-                name: "email"
-            },
-            {
-                type: "input",
-                message: questions[2],
-                name: "title"
-            },
-            {
-                type: "input",
-                message: questions[3],
-                name: "description"
-            },
-            {
-                type: "input",
-                message: questions[4],
-                name: "installation"
-            },
-            {
-                type: "input",
-                message: questions[5],
-                name: "usage"
-            },
-            {
-                type: "input",
-                message: questions[6],
-                name: "contribution"
-            },
-            {
-                type: "input",
-                message: questions[7],
-                name: "test"
-            },
-            {
-                type: "list",
-                message: questions[8],
-                name: "license",
-                choices: ["MIT", "GNU GPLv3", "Apache 2.0", "ISC"]
-            }
-        ])
+        .prompt(questions)
         .then((data) => {
             const filename = `README.md`;
             writeToFile(filename, generateMarkdown(data))

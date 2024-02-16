@@ -26,13 +26,13 @@ function generateMarkdown(data) {
   ${data.usage}
 
   ## Contributing
-  ${data.contributing}
+  ${data.contribution}
 
   ## Tests
-  ${data.tests}
+  ${data.test}
 
   ## Questions
-  If you have any questions about the repo, open an issue or contact me directly at ${data.email}. You can find more of my work at [${data.username}]
+  If you have any questions about the repo, open an issue or contact me directly at ${data.email}. You can find more of my work at https://github.com/${data.username}
   
   ## License
   This project is licensed under the ${data.license} license
