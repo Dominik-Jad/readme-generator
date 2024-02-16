@@ -19,43 +19,66 @@ const questions = [
 // function to write README file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
-        err ? console.log(err) : console.log('Read me Generated!')
+        err ? console.log(err) : console.log('READ.ME Generated!')
     );
 }
 
 // function to initialize program
 function init() {
-
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: questions[0],
+                name: "username"
+            },
+            {
+                type: "input",
+                message: questions[1],
+                name: "email"
+            },
+            {
+                type: "input",
+                message: questions[2],
+                name: "title"
+            },
+            {
+                type: "input",
+                message: questions[3],
+                name: "description"
+            },
+            {
+                type: "input",
+                message: questions[4],
+                name: "installation"
+            },
+            {
+                type: "input",
+                message: questions[5],
+                name: "usage"
+            },
+            {
+                type: "input",
+                message: questions[6],
+                name: "contribution"
+            },
+            {
+                type: "input",
+                message: questions[7],
+                name: "test"
+            },
+            {
+                type: "list",
+                message: questions[8],
+                name: "license",
+                choices: ["MIT", "GNU GPLv3", "Apache 2.0", "ISC"]
+            }
+        ])
+        .then((data) => {
+            const filename = `README.md`;
+            writeToFile(filename, generateMarkdown(data))
+        });
 }
 
 // function call to initialize program
 init();
-
-
-// inquirer
-//   .prompt([
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your name?',
-//     },
-//     {
-//       type: 'checkbox',
-//       message: 'What languages do you know?',
-//       name: 'stack',
-//       choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
-//     },
-//     {
-//       type: 'list',
-//       message: 'What is your preferred method of communication?',
-//       name: 'contact',
-//       choices: ['email', 'phone', 'telekinesis'],
-//     },
-//   ])
-//   .then((data) => {
-//     const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
-
-//     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-//       err ? console.log(err) : console.log('Success!')
-//     );
-//   });
