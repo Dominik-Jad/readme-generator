@@ -74,7 +74,7 @@ function init() {
         // then use the data from the user to generate the markdown
         .then((data) => {
             // use path to get the current working directory and join it with the file name
-            const filename = path.join(process.cwd(), "README2.md");
+            const filename = path.join(process.cwd(), "README-generated.md");
             // call the writeToFile function with the filename and the generated markdown
             writeToFile(filename, generateMarkdown(data))
         });
