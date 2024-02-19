@@ -5,6 +5,8 @@ const generateMarkdown = require("./utils/generateMarkdown");
 
 // array of questions for user
 const questions = [
+    // inquirer prompt to ask user for their GitHub username, email, project title, description, 
+    // installation instructions, usage information, contribution guidelines, test instructions, and license
         {
             type: "input",
             message: "What is your GitHub username?",
@@ -57,7 +59,9 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileName, data) {
+    // write the file to the current working directory
     fs.writeFile(fileName, data, (err) =>
+    // if there is an error, log the error, else log that the file was generated
         err ? console.log(err) : console.log('READ.ME Generated!')
     );
 }
@@ -65,9 +69,13 @@ function writeToFile(fileName, data) {
 // function to initialize program
 function init() {
     inquirer
+    // use inquirer to prompt the user with the questions array
         .prompt(questions)
+        // then use the data from the user to generate the markdown
         .then((data) => {
-            const filename = `README.md`;
+            // use path to get the current working directory and join it with the file name
+            const filename = path.join(process.cwd(), "README2.md");
+            // call the writeToFile function with the filename and the generated markdown
             writeToFile(filename, generateMarkdown(data))
         });
 }
